@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+		<script src = "http://localhost:8080/socket.io/socket.io.js"></script>
+		
+<html>
+	<head>
+		<title>Name Form Test</title>
+	</head>
+	
+		<script type="text/javascript">
+		// Network Functions
+			var socket = io.connect('http://localhost:8080');
+			
+			function submitname(form){
+				var username = form.name.value;
+				socket.emit('testconnection', username);
+			}
+			
+			
+			socket.on('testthis', function(data){
+				alert(data + ", got it!");
+			});
+		// /////////////////
+		</script>
+		<body>
+			<form name='sendname' action = '' method = 'get'/>
+			<input type='text' name='name' value='' />
+			<input 	type='button' 
+					value='Enter Name' 
+					onclick='submitname(this.form)'/>
+		</body>
+</html>
